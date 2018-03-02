@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="#fff">
+
+
+    <ImageView
+        android:id="@+id/image_item_yellow"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp" />
+
+    <TextView
+        android:id="@+id/text_yellow_download"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/btn_yellow_download"
+        android:gravity="center"
+        android:text="下载" />
+
+    <TextView
+        android:id="@+id/text_yellow_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_margin="8dp"
+        android:layout_marginRight="12dp"
+        android:layout_toLeftOf="@id/text_yellow_download"
+        android:layout_toRightOf="@id/image_item_yellow"
+        android:lines="2"
+        android:text="生理上的缴费开始交是考虑到房间数量塑料袋看风景爱的世界开房记录的积分卡时代峻峰四大皆空付时间东方闪电金风科技" />
+
+    <ImageView
+        android:id="@+id/image_list_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" />
+</RelativeLayout>
