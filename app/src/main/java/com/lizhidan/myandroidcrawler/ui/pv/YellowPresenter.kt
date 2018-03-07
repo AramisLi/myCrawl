@@ -1,9 +1,10 @@
 package com.lizhidan.myandroidcrawler.ui.pv
 
 import android.os.Handler
-import com.lizhidan.myandroidcrawler.base.BasePresenter
-import com.lizhidan.myandroidcrawler.base.BaseView
+import com.aramis.library.base.BasePresenter
+import com.aramis.library.base.BaseView
 import com.lizhidan.myandroidcrawler.bean.YellowBean
+import com.lizhidan.myandroidcrawler.bean.YellowResListBean
 import com.lizhidan.myandroidcrawler.crawler.YellowCrawlExecuter
 
 /**
@@ -21,8 +22,8 @@ class YellowPresenter(view: YellowView) : BasePresenter<YellowView>(view) {
         false
     })
 
-    fun startCrawl() {
-        executer.executeCrawl(null, handler)
+    fun startCrawl(bean: YellowResListBean) {
+        executer.executeCrawl(bean, handler)
     }
 }
 

@@ -1,6 +1,7 @@
 package com.lizhidan.myandroidcrawler.crawler
 
-import com.lizhidan.myandroidcrawler.base.BaseView
+import com.aramis.library.base.BaseView
+import com.lizhidan.myandroidcrawler.crawler.httpparse.HtmlParser
 
 /**
  * YellowHttpCrawler

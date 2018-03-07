@@ -1,4 +1,4 @@
-package com.lizhidan.myandroidcrawler.base
+package com.aramis.library.base
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity

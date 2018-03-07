@@ -1,10 +1,11 @@
 package com.lizhidan.myandroidcrawler
 
 import android.os.Bundle
-import com.lizhidan.myandroidcrawler.base.BaseActivity
+import com.aramis.library.base.BaseActivity
 import com.lizhidan.myandroidcrawler.bean.QiuBaiBean
 import com.lizhidan.myandroidcrawler.extensions.logE
 import com.lizhidan.myandroidcrawler.ui.activity.YellowActivity
+import com.lizhidan.myandroidcrawler.ui.activity.YellowListActivity
 import com.lizhidan.myandroidcrawler.ui.adapter.QiubaiAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
@@ -21,6 +22,9 @@ class MainActivity : BaseActivity() ,MainView{
         initView()
         setListener()
         initData()
+
+
+        startActivity<YellowListActivity>()
     }
 
     private fun initData() {

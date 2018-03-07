@@ -17,7 +17,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.YellowActivity"/>
+        <activity
+            android:name=".ui.activity.YellowActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.YellowListActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

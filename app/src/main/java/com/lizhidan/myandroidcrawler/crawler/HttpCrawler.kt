@@ -1,6 +1,7 @@
 package com.lizhidan.myandroidcrawler.crawler
 
-import com.lizhidan.myandroidcrawler.base.BaseView
+import com.aramis.library.base.BaseView
+import com.lizhidan.myandroidcrawler.crawler.httpparse.HtmlParser
 import com.lizhidan.myandroidcrawler.extensions.logE
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
@@ -20,10 +21,10 @@ class HttpCrawler : BaseHttpCrawler {
 
                 val document: Document = Jsoup.connect(url).get()
                 logE("获取到数据in")
-                val result = parser.parse(document)
+//                val result = parser.parse(document)
                 uiThread {
                     logE("回调in")
-                    success?.invoke(result)
+//                    success?.invoke(result)
                 }
             } catch (e: Exception) {
                 uiThread {

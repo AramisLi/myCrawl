@@ -1,4 +1,4 @@
-package com.lizhidan.myandroidcrawler.base
+package com.aramis.library.base
 
 /**
  * BasePresenter
