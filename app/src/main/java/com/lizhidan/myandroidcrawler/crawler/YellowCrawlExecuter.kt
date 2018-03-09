@@ -6,13 +6,12 @@ import com.lizhidan.myandroidcrawler.bean.YellowResIds
 import com.lizhidan.myandroidcrawler.bean.YellowResListBean
 import com.lizhidan.myandroidcrawler.crawler.httpparse.HtmlParser
 import com.lizhidan.myandroidcrawler.crawler.httpparse.IpzParser
-import com.lizhidan.myandroidcrawler.crawler.httpparse.YellowHttpParser
 import com.lizhidan.myandroidcrawler.extensions.logE
 import com.lizhidan.myandroidcrawler.extensions.pop
-import com.lizhidan.myandroidcrawler.extensions.shift
 import org.jetbrains.anko.doAsync
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
+import java.lang.Exception
 
 /**
  * YellowCrawlExecuter 循环爬取
@@ -21,104 +20,103 @@ import org.jsoup.nodes.Document
 class YellowCrawlExecuter {
     companion object {
         const val HANDLE_RUNNING = 0
-        const val HANDLE_SEND = 1
-        const val HANDLE_COMPLETE = 2
-        const val HANDLE_ERROR = 3
+        const val HANDLE_SEND = 1 //发送单个数据
+        const val HANDLE_COMPLETE = 2 //爬取完成
+        const val HANDLE_ERROR_LINK = 3 //一个链接爬取失败
+        const val HANDLE_FAIL = 4 //访问失败
+
+        const val HANDLE_TEST = 5// 测试模式
     }
+
+    var isTest = false
+    private var testExecutTime = 0
 
     //    private val crawler: HttpCrawler = HttpCrawler()
     private var baseUrl = ""
+    //先使用set，后期考虑使用栈
     private val urls = mutableSetOf<String>()
     private val urlsOld = mutableSetOf<String>()
-    private val yellowHttpParser = YellowHttpParser()
+    //    private val yellowHttpParser = YellowHttpParser()
     private val results = mutableListOf<YellowBean>()
 
+    fun executeCrawl(url: String, htmlParser: HtmlParser<*>, handler: Handler) {
+        urls.clear()
+        logE("test执行 url:$url")
+        this.baseUrl=htmlParser.baseUrl
+        crawl(url, htmlParser, handler)
+    }
 
     fun executeCrawl(bean: YellowResListBean, handler: Handler) {
-        baseUrl = if (bean.source == "123") "http://www.ipz500.com" else bean.source
+        baseUrl =  bean.source
+//        urls.add(baseUrl+"/list/index1.html")
         urls.add(baseUrl)
         val htmlParser = when (bean.id) {
             YellowResIds.RedFirst -> {
-                IpzParser()
+                IpzParser(baseUrl)
             }
             YellowResIds.RedSecond -> {
-                IpzParser()
+                IpzParser(baseUrl)
             }
             YellowResIds.RedThird -> {
-                IpzParser()
+                IpzParser(baseUrl)
             }
             else -> null
         }
+        if (htmlParser is IpzParser) {
+            htmlParser.isTest = this.isTest
+        }
         doAsync {
-            while (urls.isNotEmpty()) {
-                val url=urls.pop()
-                if (!urlsOld.contains(url)){
-                    crawl(urls.pop(), htmlParser, handler)
+            if (isTest) {
+                testExecutTime++
+                val url = urls.pop()
+                logE("test url :$url urls.size:${urls.size}")
+                if (testExecutTime > 1) {
+                    urls.clear()
+                }
+                logE("test url :$url urls.size:${urls.size}")
+                crawl(url, htmlParser, handler)
+            } else {
+                while (urls.isNotEmpty()) {
+                    val url = urls.pop()
+                    if (!urlsOld.contains(url)) {
+                        crawl(url, htmlParser, handler)
+                    }
                 }
             }
             sendMessage(handler, null, HANDLE_COMPLETE)
         }
     }
 
-//    fun executeCrawl(url: String? = null, handler: Handler? = null) {
-//        doAsync {
-//            crawl(url ?: baseUrl, handler)
-//        }
-//    }
-
     private fun <T> crawl(url: String, htmlParser: HtmlParser<T>?, handler: Handler?) {
         urlsOld.add(url)
-        logE("开始爬取：$url")
+        htmlParser?.logE("开始爬取：$url")
 //        val document: Document = Jsoup.connect(url)
 //                .header("User-Agent", "Mozilla/5.0").get()
-
-        val document: Document = Jsoup.connect(url).get()
-        val bean = htmlParser?.parse(document, urls,url==baseUrl)
-        if (bean != null) {
-            sendMessage(handler, bean, HANDLE_SEND)
+        val isRoot = url == baseUrl
+        try {
+            val document: Document = Jsoup.connect(url).get()
+            val bean = htmlParser?.parse(url, document, urls, isRoot)
+            if (isTest) {
+                sendMessage(handler, bean, HANDLE_TEST)
+            } else {
+                if (bean != null) {
+                    sendMessage(handler, bean, HANDLE_SEND)
+                }
+            }
+        } catch (e: Exception) {
+            sendMessage(handler, null, if (isRoot) HANDLE_FAIL else HANDLE_ERROR_LINK)
         }
+
     }
 
-//    private fun crawl_ccc(url: String, handler: Handler?) {
-//        urlsOld.add(url)
-//        logE("开始爬取：$url")
-////        Jsoup.connect(url)
-//        val document: Document = getDocument(url)
-//        logE(document.toString())
-//
-//        if (url == baseUrl) {
-//            val urlTags = document.getElementsByTag("a")
-//            val list = urlTags.filter {
-//                //                logE("链接："+it.attr("href"))
-//                val regex = "^/list/8.*$".toRegex()
-//                regex.matches(it.attr("href"))
-//            }.map { baseUrl + it.attr("href") }
-//            urls.addAll(list)
-//            logE(urls.toString())
-//            val first = urls.shift()
-//            crawl(first, handler)
-////            logE("${urls.size}"+","+first.toString())
-//        } else {
-//            val urlTags = document.getElementsByTag("a")
-//            for (link in urlTags) {
-//                val href = link.attr("href")
-//                logE(href)
-//            }
-//
-////            val mp4s = yellowHttpParser.parse(document)
-////            if (mp4s.isNotEmpty()) {
-////                this.results.addAll(mp4s)
-////                val obtainMessage = handler?.obtainMessage()
-////                obtainMessage?.obj = mp4s
-////                obtainMessage?.what = HANDLE_SEND
-////                handler?.sendMessage(obtainMessage)
-////            }
-//        }
-//    }
 
     private fun sendMessage(handler: Handler?, obj: Any?, what: Int) {
         val obtainMessage = handler?.obtainMessage()
-        obtainMessage?.obj = obj
+        if (isTest) {
+            obtainMessage?.obj = this.urls
+        } else {
+            obtainMessage?.obj = obj
+        }
         obtainMessage?.what = what
         handler?.sendMessage(obtainMessage)
     }

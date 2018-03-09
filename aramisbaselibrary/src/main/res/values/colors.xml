@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="colorPrimary">#3F51B5</color>-->
+    <!--<color name="colorPrimaryDark">#303F9F</color>-->
+    <!--<color name="colorAccent">#FF4081</color>-->
+    <color name="colorPrimary">#1ebdff</color>
+    <color name="colorPrimaryDark">#1d9fff</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="transparent">#00000000</color>
+    <color name="white">#ffffff</color>
+
+    <color name="colorPrimary_lite">#15e1ff</color>
+
+    <color name="color_user_line">#e4e4e4</color>
+    <!--bg-->
+    <color name="bg_main_gray">#eaeff0</color>
+    <!--<color name="bg_toolbar">#ffffff</color>-->
+    <color name="bg_toolbar">#1ebdff</color>
+    <!--text color-->
+    <color name="textcolor_main_black">#080808</color>
+    <color name="textcolor_main_orange">#fc4e3c</color>
+    <color name="textcolor_main_orange_lite">#fe5c1d</color>
+    <color name="textcolor_main_gray_lite">#666666</color>
+    <color name="textcolor_main_gray">#333333</color>
+    <color name="textcolor_main_red">#ff3030</color>
+    <color name="textcolor_main_red_lite">#ff6d6d</color>
+    <color name="textcolor_main_yellow">#fed25b</color>
+    <!--motions-->
+    <color name="trans_black">#66000000</color>
+    <color name="background">#007AFF</color>
+    <color name="white_50">#7fffffff</color>
+    <color name="divider">#C4C3C8</color>
+
+    <color name="color_ff461b">#ff461b</color>
+    <color name="color_ff481b">#ff481b</color>
+    <color name="color_e5f6f9">#e5f6f9</color>
+    <color name="color_101010">#101010</color>
+    <color name="color_1dbeff">#1dbeff</color>
+    <color name="color_3e3e3e">#3e3e3e</color>
+    <color name="color_e8f0f6">#e8f0f6</color>
+    <color name="color_4dbeff">#4dbeff</color>
+    <color name="color_fe5c1d">#fe5c1d</color>
+    <color name="color_6e6e6e">#6e6e6e</color>
+    <!--<color name="color_333333">#333333</color>-->
+    <!--<color name="color_666666">#666666</color>-->
+</resources>

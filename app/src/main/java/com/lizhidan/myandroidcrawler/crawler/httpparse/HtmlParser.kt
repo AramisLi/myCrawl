@@ -7,5 +7,6 @@ import org.jsoup.nodes.Document
  * Created by lizhidan on 2018/2/27.
  */
 interface HtmlParser<out T> {
-    fun parse(document: Document,requestQueue:MutableCollection<String>,isRoot:Boolean=false):T?
+    var baseUrl:String
+    fun parse(url:String,document: Document,requestQueue:MutableCollection<String>,isRoot:Boolean=false):T?
 }

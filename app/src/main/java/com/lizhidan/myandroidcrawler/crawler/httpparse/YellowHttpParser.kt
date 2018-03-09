@@ -7,9 +7,12 @@ import org.jsoup.nodes.Document
  * YellowHttpParser
  * Created by lizhidan on 2018/3/2.
  */
-class YellowHttpParser: HtmlParser<YellowBean> {
+class YellowHttpParser(override var baseUrl: String) : HtmlParser<YellowBean> {
+    override fun parse(url: String, document: Document, requestQueue: MutableCollection<String>, isRoot: Boolean): YellowBean? {
+        return null
+    }
 
-    override fun parse(document: Document,requestQueue:MutableCollection<String>,isRoot:Boolean): YellowBean? {
+//    override fun parse(document: Document,requestQueue:MutableCollection<String>,isRoot:Boolean): YellowBean? {
 //        val list= mutableListOf<YellowBean>()
 //        val elementsByTag = document.getElementsByTag("textarea")
 //        for (element in elementsByTag) {
@@ -23,6 +26,6 @@ class YellowHttpParser: HtmlParser<YellowBean> {
 //            list.add(bean)
 //        }
 
-        return null
-    }
+//        return null
+//    }
 }

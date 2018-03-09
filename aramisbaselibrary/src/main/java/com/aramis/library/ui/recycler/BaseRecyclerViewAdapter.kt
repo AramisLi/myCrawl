@@ -24,8 +24,8 @@ abstract class BaseRecyclerViewAdapter<T>(private val layoutId: Int, val list: M
         this.onItemLongClickListener = onItemLongClickListener
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BaseRecyclerViewHolder {
-        val view = LayoutInflater.from(parent?.context).inflate(layoutId, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRecyclerViewHolder {
+                val view = LayoutInflater.from(parent?.context).inflate(layoutId, parent, false)
 
         return BaseRecyclerViewHolder(view)
     }

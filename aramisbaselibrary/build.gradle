@@ -12,7 +12,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled = true
     }
 
     buildTypes {
@@ -38,4 +39,15 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.github.bumptech.glide:glide:4.6.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
+    //rxvolley,已包含rxjava
+    implementation 'com.kymjs.rxvolley:rxvolley:1.1.4'
+    implementation 'com.kymjs.rxvolley:okhttp3:1.1.4'
+    //多包
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+
+    implementation files('libs/sun.misc.BASE64Decoder.jar')
+    implementation 'cn.aigestudio.wheelpicker:WheelPicker:1.1.2'
+    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.alibaba:fastjson:1.2.32'
 }

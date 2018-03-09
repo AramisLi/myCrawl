@@ -9,8 +9,8 @@ import org.jsoup.nodes.Document
  * QiubaiHtmlParser
  * Created by lizhidan on 2018/2/27.
  */
-class QiubaiHtmlParser: HtmlParser<QiuBaiBean> {
-    override fun parse(document: Document, requestQueue: MutableCollection<String>,isRoot:Boolean): QiuBaiBean? {
+class QiubaiHtmlParser(override var baseUrl: String) : HtmlParser<QiuBaiBean> {
+    override fun parse(url: String, document: Document, requestQueue: MutableCollection<String>, isRoot: Boolean): QiuBaiBean? {
         return null
     }
 

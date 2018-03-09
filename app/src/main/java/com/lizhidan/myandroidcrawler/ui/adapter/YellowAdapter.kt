@@ -29,14 +29,17 @@ class YellowAdapter(private val list: MutableList<YellowBean>) : BaseAdapter() {
             holder = view.tag as ViewHolder
         }
         list[position].apply {
-            holder.text_yellow_title.text = title
+            holder.text_yellow_title.text = videoAddr
             holder.text_yellow_download.setOnClickListener {
                 onDownloadClick?.invoke(position)
             }
             val context = parent?.context
             if (context != null) {
 //                logE(img)
-                Glide.with(context).load(imgAddr).into(holder.image_item_yellow)
+
+                if (imgAddr.isNotBlank()){
+                    Glide.with(context).load(imgAddr).into(holder.image_item_yellow)
+                }
             }
         }
         return view!!

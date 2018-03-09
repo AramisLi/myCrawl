@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff">
+
+    <TextView
+        android:id="@+id/text_yellow_link"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_margin="8dp"
+        android:layout_marginRight="12dp"
+        android:lines="2"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:text="生理上的缴费开始交是考虑到房间数量塑料袋看风景爱的世界开房记录的积分卡时代峻峰四大皆空付时间东方闪电金风科技" />
+
+</RelativeLayout>

@@ -2,6 +2,7 @@ package com.lizhidan.myandroidcrawler
 
 import android.os.Bundle
 import com.aramis.library.base.BaseActivity
+import com.aramis.library.base.BasePresenter
 import com.lizhidan.myandroidcrawler.bean.QiuBaiBean
 import com.lizhidan.myandroidcrawler.extensions.logE
 import com.lizhidan.myandroidcrawler.ui.activity.YellowActivity
@@ -12,6 +13,10 @@ import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 class MainActivity : BaseActivity() ,MainView{
+    override fun getPresenter(): BasePresenter<*>? {
+        return null
+    }
+
     private val presenter=QiuBaiPresenter(this)
     private val dataList= mutableListOf<QiuBaiBean>()
     private val adapter=QiubaiAdapter(dataList)

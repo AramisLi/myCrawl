@@ -5,6 +5,7 @@ import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import com.lizhidan.myandroidcrawler.R
 import com.aramis.library.base.BaseActivity
+import com.aramis.library.base.BasePresenter
 import com.lizhidan.myandroidcrawler.bean.YellowResIds
 import com.lizhidan.myandroidcrawler.bean.YellowResListBean
 import com.lizhidan.myandroidcrawler.ui.adapter.YellowResListAdapter
@@ -16,7 +17,10 @@ import org.jetbrains.anko.toast
  * YellowListActivity
  * Created by lizhidan on 2018/3/6.
  */
-class YellowListActivity : BaseActivity() {
+class YellowListActivity() : BaseActivity() {
+    override fun getPresenter(): BasePresenter<*>? {
+        return null
+    }
 
     private val dataList = mutableListOf<YellowResListBean>()
     private val adapter = YellowResListAdapter(dataList)
@@ -34,9 +38,9 @@ class YellowListActivity : BaseActivity() {
     }
 
     private fun initData() {
-        dataList.add(YellowResListBean(YellowResIds.RedFirst, "源1", "123"))
-        dataList.add(YellowResListBean(YellowResIds.RedSecond, "源2", "123"))
-        dataList.add(YellowResListBean(YellowResIds.RedThird, "源3", "123", "需要翻墙"))
+        dataList.add(YellowResListBean(YellowResIds.RedFirst, "源1", "http://www.ipz500.com"))
+//        dataList.add(YellowResListBean(YellowResIds.RedSecond, "源2", "123"))
+//        dataList.add(YellowResListBean(YellowResIds.RedThird, "源3", "123", "需要翻墙"))
         adapter.notifyDataSetChanged()
     }
 
